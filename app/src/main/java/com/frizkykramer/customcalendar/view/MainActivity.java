@@ -1,18 +1,16 @@
-package com.frizkykramer.customcalendar;
+package com.frizkykramer.customcalendar.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
-import net.danlew.android.joda.JodaTimeAndroid;
+import com.frizkykramer.customcalendar.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.activity_calendar)       CalendarView calendarView;
+    @BindView(R.id.activity_calendar)
+    CalendarView calendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

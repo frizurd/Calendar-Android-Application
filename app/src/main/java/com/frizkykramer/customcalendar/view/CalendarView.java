@@ -1,4 +1,4 @@
-package com.frizkykramer.customcalendar;
+package com.frizkykramer.customcalendar.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,6 +8,8 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.frizkykramer.customcalendar.R;
+import com.frizkykramer.customcalendar.adapter.CalendarGridAdapter;
 import com.twinkle94.monthyearpicker.picker.YearMonthPickerDialog;
 
 import net.danlew.android.joda.JodaTimeAndroid;
