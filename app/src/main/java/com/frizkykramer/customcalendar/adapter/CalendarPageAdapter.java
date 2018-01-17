@@ -1,53 +1,54 @@
 package com.frizkykramer.customcalendar.adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.frizkykramer.customcalendar.model.CustomPageEnum;
 
 import java.util.ArrayList;
 
-public class CalendarPageAdapter extends FragmentStatePagerAdapter {
+public class CalendarPageAdapter extends PagerAdapter {
 
-    public static int LOOPS_COUNT = 1000;
-    private ArrayList<String> mProducts;
+    private Context mContext;
 
-
-    public CalendarPageAdapter(FragmentManager manager, ArrayList<String> products)
-    {
-        super(manager);
-        mProducts = products;
+    public CalendarPageAdapter(Context context) {
+        mContext = context;
     }
 
     @Override
-    public Fragment getItem(int position) {
-        return null;
+    public Object instantiateItem(ViewGroup collection, int position) {
+        CustomPageEnum customPagerEnum = CustomPageEnum.values()[position];
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        ViewGroup layout = (ViewGroup) inflater.inflate(customPagerEnum.getLayoutResId(), collection, false);
+        collection.addView(layout);
+        return layout;
     }
-
-    //    @Override
-//    public Fragment getItem(int position)
-//    {
-//        if (mProducts != null && mProducts.size() > 0)
-//        {
-//            position = position % mProducts.size(); // use modulo for infinite cycling
-//            return MyFragment.newInstance(mProducts.get(position));
-//        }
-//        else
-//        {
-//            return MyFragment.newInstance(null);
-//        }
-//    }
-
 
     @Override
-    public int getCount()
-    {
-        if (mProducts != null && mProducts.size() > 0)
-        {
-            return mProducts.size()*LOOPS_COUNT; // simulate infinite by big number of products
-        }
-        else
-        {
-            return 1;
-        }
+    public void destroyItem(ViewGroup collection, int position, Object view) {
+        collection.removeView((View) view);
     }
+
+    @Override
+    public int getCount() {
+        return CustomPageEnum.values().length;
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        CustomPageEnum customPagerEnum = CustomPageEnum.values()[position];
+        return mContext.getString(customPagerEnum.getTitleResId());
+    }
+
 }
