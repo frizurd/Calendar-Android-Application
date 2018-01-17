@@ -1,4 +1,4 @@
-package com.frizkykramer.customcalendar.view;
+package com.frizkykramer.customcalendar.lib.customview;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -27,9 +27,9 @@ import butterknife.OnClick;
 
 public class CalendarView extends LinearLayout {
 
-    @BindView(R.id.mainAct_year)            TextView currentYear;
-    @BindView(R.id.mainAct_month)           TextView currentMonth;
-    @BindView(R.id.calendar_grid)           GridView calendarGrid;
+    @BindView(R.id.mainAct_year)      TextView currentYear;
+    @BindView(R.id.mainAct_month)     TextView currentMonth;
+    @BindView(R.id.calendar_grid)     GridView calendarGrid;
 
     private Calendar calendar;
     private CalendarGridAdapter calAdapter;
@@ -42,8 +42,6 @@ public class CalendarView extends LinearLayout {
 
         View view = LayoutInflater.from(context).inflate(R.layout.activity_calendar, this);
         ButterKnife.bind(this, view);
-
-        JodaTimeAndroid.init(context);
 
         calendar =  Calendar.getInstance(Locale.ENGLISH);
         initiateCalendar();
@@ -77,12 +75,14 @@ public class CalendarView extends LinearLayout {
                 calendar.set(Calendar.MONTH, month);
 
                 initiateCalendar();
+
             }
-        }, R.style.MyDialogTheme, R.color.colorPrimary);
+        }, R.style.MyDialogTheme, R.color.colorAccent);
     }
 
     @OnClick(R.id.mainAct_MonthYear)
     public void callMonthPickerDialog() {
         yearMonthPickerDialog.show();
     }
+
 }

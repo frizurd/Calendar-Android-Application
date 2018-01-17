@@ -1,6 +1,7 @@
 package com.frizkykramer.customcalendar.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.frizkykramer.customcalendar.R;
+import com.frizkykramer.customcalendar.view.activity.DetailActivity;
+import com.frizkykramer.customcalendar.view.activity.MainActivity;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -19,12 +22,14 @@ import java.util.List;
 
 public class CalendarGridAdapter extends ArrayAdapter {
 
+    private Context context;
     private List<Date> monthDates;
     private Calendar currentDate;
     private LayoutInflater inflater;
 
     public CalendarGridAdapter(Context context, List<Date> monthDates, Calendar currentDate) {
         super(context, R.layout.day_grid_layout);
+        this.context = context;
         this.monthDates = monthDates;
         this.currentDate = currentDate;
         inflater = LayoutInflater.from(context);
@@ -32,17 +37,16 @@ public class CalendarGridAdapter extends ArrayAdapter {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
         Date mDate = monthDates.get(position);
-        Calendar dateCal = Calendar.getInstance();
+        final Calendar dateCal = Calendar.getInstance();
         dateCal.setTime(mDate);
+
         int dayValue = dateCal.get(Calendar.DAY_OF_MONTH);
         int displayMonth = dateCal.get(Calendar.MONTH) + 1;
         int displayYear = dateCal.get(Calendar.YEAR);
-        int currentMonth = currentDate.get(Calendar.MONTH) + 1;
-        int currentYear = currentDate.get(Calendar.YEAR);
-
-        View view = convertView;
+        final int currentMonth = currentDate.get(Calendar.MONTH) + 1;
+        final int currentYear = currentDate.get(Calendar.YEAR);
 
         if(view == null){
             view = inflater.inflate(R.layout.day_grid_layout, parent, false);
@@ -60,6 +64,7 @@ public class CalendarGridAdapter extends ArrayAdapter {
             cellNumber.setTextColor(Color.parseColor("#FFFFFF"));
         }
         cellNumber.setText(String.valueOf(dayValue));
+
         return view;
     }
 

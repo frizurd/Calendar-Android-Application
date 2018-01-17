@@ -8,10 +8,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/white"
-    tools:context="com.frizkykramer.customcalendar.view.MainActivity">
+    tools:context="com.frizkykramer.customcalendar.view.activity.MainActivity">
 
 
-        <com.frizkykramer.customcalendar.view.CalendarView
+        <com.frizkykramer.customcalendar.lib.customview.CalendarView
             android:id="@+id/activity_calendar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

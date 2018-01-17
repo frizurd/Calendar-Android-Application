@@ -1,9 +1,10 @@
-package com.frizkykramer.customcalendar.view;
+package com.frizkykramer.customcalendar.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.frizkykramer.customcalendar.R;
+import com.frizkykramer.customcalendar.lib.customview.CalendarView;
 
 import butterknife.BindView;
 

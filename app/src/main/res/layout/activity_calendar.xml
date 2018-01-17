@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="50dp"
-    tools:context="com.frizkykramer.customcalendar.view.MainActivity">
+    tools:context="com.frizkykramer.customcalendar.view.activity.MainActivity">
 
     <LinearLayout
         android:id="@+id/mainAct_MonthYear"
