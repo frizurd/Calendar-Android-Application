@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frizkykramer.customcalendar.R;
+import com.frizkykramer.customcalendar.service.CalendarService;
 import com.frizkykramer.customcalendar.view.activity.DetailActivity;
 import com.frizkykramer.customcalendar.view.activity.MainActivity;
 
@@ -42,11 +44,11 @@ public class CalendarGridAdapter extends ArrayAdapter {
         final Calendar dateCal = Calendar.getInstance();
         dateCal.setTime(mDate);
 
-        int dayValue = dateCal.get(Calendar.DAY_OF_MONTH);
-        int displayMonth = dateCal.get(Calendar.MONTH) + 1;
-        int displayYear = dateCal.get(Calendar.YEAR);
-        final int currentMonth = currentDate.get(Calendar.MONTH) + 1;
-        final int currentYear = currentDate.get(Calendar.YEAR);
+        final int dayValue = dateCal.get(Calendar.DAY_OF_MONTH),
+                displayMonth = dateCal.get(Calendar.MONTH) + 1,
+                displayYear = dateCal.get(Calendar.YEAR),
+                currentMonth = currentDate.get(Calendar.MONTH) + 1,
+                currentYear = currentDate.get(Calendar.YEAR);
 
         if(view == null){
             view = inflater.inflate(R.layout.day_grid_layout, parent, false);
@@ -64,6 +66,19 @@ public class CalendarGridAdapter extends ArrayAdapter {
             cellNumber.setTextColor(Color.parseColor("#FFFFFF"));
         }
         cellNumber.setText(String.valueOf(dayValue));
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent serviceIntent= new Intent(context, CalendarService.class);
+                serviceIntent.putExtra("chosenDay",     dayValue);
+                serviceIntent.putExtra("chosenMonth",   displayMonth);
+                serviceIntent.putExtra("chosenYear",    displayYear);
+
+                context.startService(serviceIntent);
+            }
+        });
 
         return view;
     }

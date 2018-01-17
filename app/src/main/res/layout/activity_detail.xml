@@ -12,12 +12,14 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/detailAct_dayMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Day and Month"
             android:textSize="24dp"/>
 
         <TextView
+            android:id="@+id/detailAct_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Year"
@@ -28,15 +30,16 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/detailAct_dayFull"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textSize="16dp"
         android:text="Wednesday"/>
 
-    <view
+    <View
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@android:color/darker_gray"
         android:layout_height="1dp"/>
 </LinearLayout>
